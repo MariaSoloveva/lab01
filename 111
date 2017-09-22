@@ -1,14 +1,17 @@
 #include <iostream>
+#include <iostream>
+
+#include <string>
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
-    std::cout << "pi = 3.14" << std::endl;
-    std::cout << "1 13 49" << std::endl;
+    std::cout << "pi = 3.14" << std::endl;//Вывести значение числа пи с точностью до сотых
+    std::cout << "1 13 49" << std::endl;//Вывести строку /1 13 49/
     std::cout << "Введите знак" << std::endl;
     std::string sign1;
     std::cin >> sign1;
     std::string message = "1" + sign1 + "13"+sign1+"49";
-    std::cout << message << std::endl;
+    std::cout << message << std::endl;//Вывести числа с произвольным знаком между ними
     std::cout << "Введите три любые числа" << std::endl;
     std::string number1;
     std::cin >> number1;
@@ -16,7 +19,36 @@ int main() {
     std::cin >> number2;
     std::string number3;
     std::cin >> number3;
-    std::string message = number1 + "  " + number2 + "  " + number3;
-    std::cout << message << std::endl;
+    std::string message1 = number1 + "  " + number2 + "  " + number3;
+    std::cout << message1 << std::endl;//Вывести три любые числа с двуми пробелами между ними
+    double a,x,y;
+    std::cout << "Введите число а" << std::endl;
+    std::cin >> a;
+    x = 12 * a * a + 7 * a - 12;
+    y = 3 * x * x * x + 4 * x * x - 11 * x + 1;
+    std::cout << x << std::endl;//Вывести значение х
+    std::cout << y << std::endl;//Вывести значение y
+    double volume,weight,dentisy;
+    std::cout << "Введите объем и массу" << std::endl;
+    std::cin >> volume;
+    std::cin >> weight;
+    dentisy = weight / volume;
+    std::cout << dentisy << std::endl;//Вывести найденную плотность
+    double a1,b,x0;
+    std::cout << "Введите число а,b" << std::endl;
+    std::cin >> a1;
+    std::cin >> b;
+    x0 = -b / a1;//Вывести найденное решение 
+    std::cout << x0 << std::endl;
+    double x1x2,y1,y2,s;
+    std::cin >> x1;
+    std::cin >> y1;
+    std::cin >> x2;
+    std::cin >> y2;
+    s = sqrt( ( x1-x2) * ( x1-x2 ) +( y1-y2 ) * ( y1-y2) );
+    std::cout << s << std::endl;//Вывести найденное значение расстояния
+    std::cin >> number1;
+    std::cin >> number1;
+    std::cin >> number1;
     return 0;
 }
