@@ -1,0 +1,22 @@
+#include <iostream>
+
+int main() {
+    std::cout << "Hello, World!" << std::endl;
+    std::cout << "pi = 3.14" << std::endl;
+    std::cout << "1 13 49" << std::endl;
+    std::cout << "Введите знак" << std::endl;
+    std::string sign1;
+    std::cin >> sign1;
+    std::string message = "1" + sign1 + "13"+sign1+"49";
+    std::cout << message << std::endl;
+    std::cout << "Введите три любые числа" << std::endl;
+    std::string number1;
+    std::cin >> number1;
+    std::string number2;
+    std::cin >> number2;
+    std::string number3;
+    std::cin >> number3;
+    std::string message = number1 + "  " + number2 + "  " + number3;
+    std::cout << message << std::endl;
+    return 0;
+}
