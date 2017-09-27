@@ -4,7 +4,6 @@
 #include <string>
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
     std::cout << "pi = 3.14" << std::endl;//Вывести значение числа пи с точностью до сотых
     std::cout << "1 13 49" << std::endl;//Вывести строку /1 13 49/
     std::cout << "Введите знак" << std::endl;
@@ -21,34 +20,77 @@ int main() {
     std::cin >> number3;
     std::string message1 = number1 + "  " + number2 + "  " + number3;
     std::cout << message1 << std::endl;//Вывести три любые числа с двуми пробелами между ними
-    double a,x,y;
     std::cout << "Введите число а" << std::endl;
+    double a;
     std::cin >> a;
+    double x;
     x = 12 * a * a + 7 * a - 12;
+    double y;
     y = 3 * x * x * x + 4 * x * x - 11 * x + 1;
     std::cout << x << std::endl;//Вывести значение х
     std::cout << y << std::endl;//Вывести значение y
-    double volume,weight,dentisy;
     std::cout << "Введите объем и массу" << std::endl;
+    double volume;
     std::cin >> volume;
+    double weight;
     std::cin >> weight;
+    double dentisy;
     dentisy = weight / volume;
     std::cout << dentisy << std::endl;//Вывести найденную плотность
-    double a1,b,x0;
     std::cout << "Введите число а,b" << std::endl;
+    double a1;
     std::cin >> a1;
+    double b;
     std::cin >> b;
-    x0 = -b / a1;//Вывести найденное решение 
-    std::cout << x0 << std::endl;
-    double x1x2,y1,y2,s;
+    double x0;
+    x0 = -b / a1; 
+    std::cout << x0 << std::endl;//Вывести найденное решение
+    double x1;
     std::cin >> x1;
+    double y1;
     std::cin >> y1;
+    double x2;
     std::cin >> x2;
+    double y2;
     std::cin >> y2;
     s = sqrt( ( x1-x2) * ( x1-x2 ) +( y1-y2 ) * ( y1-y2) );
     std::cout << s << std::endl;//Вывести найденное значение расстояния
-    std::cin >> number1;
-    std::cin >> number1;
-    std::cin >> number1;
+    std::cout << "Введите размеры большего и меньшего оснований и высоты" << std::endl;
+    double bigBase;
+    std::cin >> bigBase;
+    double littleBase;
+    std::cin >> littleBase;
+    double height;
+    std::cin >> height;
+    double perimeter;
+    perimeter = bigBase + littleBase + 2 * sqrt( height * height + ( bigBase - littleBase ) * ( bigBase - littleBase ) / 4 );
+    std::cout << perimeter << std::endl;
+    std::cout << "Введите внутренний и внешний радиус" << std::endl;
+    double littleRadius;
+    std::cin >> littleRadius;
+    double big_radius;
+    std::cin >> bigRadius;
+    double square;
+    square = 3.14 * ( bigRadius*bigRadius - littleRadius * littleRadius );
+    std::cout << square << std::endl;//Площадь кольца
+    std::cout << "Введите длину ребра" << std::endl;//Площадь кольца
+    double rid;
+    std::cin >> rib;
+    double volumeCube;
+    volumeCube = rib * rib * rib;
+    double surfaceArea;
+    surfaceArea = 6 * rib * rib;
+    std::cout << volumeCube << std::endl;
+    std::cout << surfaceArea << std::endl;
+    std::cout << "Введите сторону квадрата, чтобы узнать периметр" << std::endl;
+    double side;
+    std::cin >> side;
+    double area;
+    area = 4 * side;
+    std::cout << "Введите радиус окружности, чтобы узнать диаметр" << std::endl;
+    double radius;
+    std::cin >> radius;
+    double deameter;
+    deameter = 2 * radius; 
     return 0;
 }
