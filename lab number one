@@ -99,11 +99,13 @@ int main() {
     std::cin >> side;
     double area;
     area = 4 * side;
+    std::cout << area << std::endl;
 // Нахождение радиуса окружности :
     std::cout << "Введите радиус окружности, чтобы узнать диаметр" << std::endl;
     double radius;
     std::cin >> radius;
     double deameter;
     deameter = 2 * radius; 
+    std::cout << deameter << std::endl;
     return 0;
 }
