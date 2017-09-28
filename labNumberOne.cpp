@@ -25,12 +25,10 @@ int main(){
     std::cout << message1 << std::endl;
 // Вычисление значения функции1 :
     std::cout << "Введите число а" << std::endl;
-    double a;
+    double a = 0;
     std::cin >> a;
-    double x;
-    x = 12 * a * a + 7 * a - 12;
-    double y;
-    y = 3 * x * x * x + 4 * x * x - 11 * x + 1;
+    double x = 12 * a * a + 7 * a - 12;
+    double y = 3 * x * x * x + 4 * x * x - 11 * x + 1;
     std::cout << x << std::endl;
     std::cout << y << std::endl;
 // Определение плотности по объему и массе :
@@ -39,8 +37,7 @@ int main(){
     std::cin >> volume;
     double weight;
     std::cin >> weight;
-    double dentisy;
-    dentisy = weight / volume;
+    double dentisy = weight / volume;
     std::cout << dentisy << std::endl;
 // Решение функции :
     std::cout << "Введите число а,b" << std::endl;
@@ -48,8 +45,7 @@ int main(){
     std::cin >> a1;
     double b;
     std::cin >> b;
-    double x0;
-    x0 = -b / a1;
+    double x0 = -b / a1;
     std::cout << x0 << std::endl;
 // Длина между двумя точками :
     double x1;
@@ -60,8 +56,7 @@ int main(){
     std::cin >> x2;
     double y2;
     std::cin >> y2;
-    double s;
-    s = sqrt( ( x1-x2 ) * ( x1-x2 ) +( y1-y2 ) * ( y1-y2 ) );
+    double s = sqrt( ( x1-x2 ) * ( x1-x2 ) +( y1-y2 ) * ( y1-y2 ) );
     std::cout << s << std::endl;
 // Нахождение периметра равнобедренной трапеции :
     std::cout << "Введите размеры большего и меньшего оснований и высоты" << std::endl;
@@ -71,8 +66,7 @@ int main(){
     std::cin >> littleBase;
     double height;
     std::cin >> height;
-    double perimeter;
-    perimeter = bigBase + littleBase + 2 * sqrt( height * height + ( bigBase - littleBase ) * ( bigBase - littleBase ) / 4 );
+    double perimeter = bigBase + littleBase + 2 * sqrt( height * height + ( bigBase - littleBase ) * ( bigBase - littleBase ) / 4 );
     std::cout << perimeter << std::endl;
 // Нахождение площади кольца :
     std::cout << "Введите внутренний и внешний радиус" << std::endl;
@@ -80,8 +74,7 @@ int main(){
     std::cin >> littleRadius;
     double bigRadius;
     std::cin >> bigRadius;
-    double square;
-    square = 3.14 * ( bigRadius*bigRadius - littleRadius * littleRadius );
+    double square = 3.14 * ( bigRadius*bigRadius - littleRadius * littleRadius );
     std::cout << square << std::endl;
 // Нахождение площади кольца :
     std::cout << "Введите длину ребра" << std::endl;
@@ -97,15 +90,13 @@ int main(){
     std::cout << "Введите сторону квадрата, чтобы узнать периметр" << std::endl;
     double side;
     std::cin >> side;
-    double area;
-    area = 4 * side;
+    double area = 4 * side;
     std::cout << area << std::endl;
 // Нахождение радиуса окружности :
     std::cout << "Введите радиус окружности, чтобы узнать диаметр" << std::endl;
     double radius;
     std::cin >> radius;
-    double deameter;
-    deameter = 2 * radius;
+    double deameter = 2 * radius;
     std::cout << deameter << std::endl;
     return 0;
 }
