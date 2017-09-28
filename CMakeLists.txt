@@ -6,7 +6,7 @@ include_directories(SYSTEM
 
 # enum your files
 add_executable(executable
-	lab01.cpp
+	hello_world.cpp
 )
 
 target_link_libraries(executable)
