@@ -2,7 +2,7 @@
 #include <string>
 #include <math.h>
 
-int main() {    
+int main(){
 // Вывод числа Пи, округленного до сотых :
     std::cout << "pi = 3.14" << std::endl;
 // Вывод чисел 1/13/49 c одним пробелом между ними :
@@ -49,7 +49,7 @@ int main() {
     double b;
     std::cin >> b;
     double x0;
-    x0 = -b / a1; 
+    x0 = -b / a1;
     std::cout << x0 << std::endl;
 // Длина между двумя точками :
     double x1;
@@ -105,7 +105,7 @@ int main() {
     double radius;
     std::cin >> radius;
     double deameter;
-    deameter = 2 * radius; 
+    deameter = 2 * radius;
     std::cout << deameter << std::endl;
     return 0;
 }
