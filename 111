@@ -1,6 +1,6 @@
-// Example program
 #include <iostream>
 #include <string>
+#include <math.h>
 
 int main() {    
 // Вывод числа Пи, округленного до сотых :
@@ -60,7 +60,8 @@ int main() {
     std::cin >> x2;
     double y2;
     std::cin >> y2;
-    s = sqrt( ( x1-x2) * ( x1-x2 ) +( y1-y2 ) * ( y1-y2) );
+    double s;
+    s = sqrt( ( x1-x2 ) * ( x1-x2 ) +( y1-y2 ) * ( y1-y2 ) );
     std::cout << s << std::endl;
 // Нахождение периметра равнобедренной трапеции :
     std::cout << "Введите размеры большего и меньшего оснований и высоты" << std::endl;
@@ -77,14 +78,14 @@ int main() {
     std::cout << "Введите внутренний и внешний радиус" << std::endl;
     double littleRadius;
     std::cin >> littleRadius;
-    double big_radius;
+    double bigRadius;
     std::cin >> bigRadius;
     double square;
     square = 3.14 * ( bigRadius*bigRadius - littleRadius * littleRadius );
     std::cout << square << std::endl;
 // Нахождение площади кольца :
     std::cout << "Введите длину ребра" << std::endl;
-    double rid;
+    double rib;
     std::cin >> rib;
     double volumeCube;
     volumeCube = rib * rib * rib;
