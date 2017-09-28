@@ -56,7 +56,8 @@ int main(){
     std::cin >> x2;
     double y2;
     std::cin >> y2;
-    double s = sqrt( ( x1-x2 ) * ( x1-x2 ) +( y1-y2 ) * ( y1-y2 ) );
+    double s;
+    s = sqrt((x1-x2) * (x1-x2) +(y1-y2) * (y1-y2));
     std::cout << s << std::endl;
 // Нахождение периметра равнобедренной трапеции :
     std::cout << "Введите размеры большего и меньшего оснований и высоты" << std::endl;
@@ -66,7 +67,8 @@ int main(){
     std::cin >> littleBase;
     double height;
     std::cin >> height;
-    double perimeter = bigBase + littleBase + 2 * sqrt( height * height + ( bigBase - littleBase ) * ( bigBase - littleBase ) / 4 );
+    double sum = sqrt(height * height + (bigBase - littleBase) * (bigBase - littleBase) / 4);
+    double perimeter = bigBase + littleBase + 2 * sum;
     std::cout << perimeter << std::endl;
 // Нахождение площади кольца :
     std::cout << "Введите внутренний и внешний радиус" << std::endl;
@@ -74,7 +76,7 @@ int main(){
     std::cin >> littleRadius;
     double bigRadius;
     std::cin >> bigRadius;
-    double square = 3.14 * ( bigRadius*bigRadius - littleRadius * littleRadius );
+    double square = 3.14 * (bigRadius*bigRadius - littleRadius * littleRadius);
     std::cout << square << std::endl;
 // Нахождение площади кольца :
     std::cout << "Введите длину ребра" << std::endl;
