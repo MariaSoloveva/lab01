@@ -1,12 +1,12 @@
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required (VERSION 2.8) 
 
-include_directories(SYSTEM
-    ./
-)
+include_directories(SYSTEM 
+./ 
+) 
 
-# enum your files
-add_executable(executable
-	labNumberOne.cpp
-)
+# enum your files 
+add_executable(executable 
+labNumberOne.cpp
+) 
 
 target_link_libraries(executable)
