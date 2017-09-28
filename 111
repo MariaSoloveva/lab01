@@ -1,16 +1,19 @@
+// Example program
 #include <iostream>
-#include <iostream>
-
 #include <string>
 
-int main() {
-    std::cout << "pi = 3.14" << std::endl;//Вывести значение числа пи с точностью до сотых
-    std::cout << "1 13 49" << std::endl;//Вывести строку /1 13 49/
+int main() {    
+// Вывод числа Пи, округленного до сотых :
+    std::cout << "pi = 3.14" << std::endl;
+// Вывод чисел 1/13/49 c одним пробелом между ними :
+    std::cout << "1 13 49" << std::endl;
+// Вывод чисел 1/13/49 разделенные заданым символом :
     std::cout << "Введите знак" << std::endl;
     std::string sign1;
     std::cin >> sign1;
     std::string message = "1" + sign1 + "13"+sign1+"49";
-    std::cout << message << std::endl;//Вывести числа с произвольным знаком между ними
+    std::cout << message << std::endl;
+// Вывод трех любых чисел с двумя пробелами между ними :
     std::cout << "Введите три любые числа" << std::endl;
     std::string number1;
     std::cin >> number1;
@@ -19,7 +22,8 @@ int main() {
     std::string number3;
     std::cin >> number3;
     std::string message1 = number1 + "  " + number2 + "  " + number3;
-    std::cout << message1 << std::endl;//Вывести три любые числа с двуми пробелами между ними
+    std::cout << message1 << std::endl;
+// Вычисление значения функции1 :
     std::cout << "Введите число а" << std::endl;
     double a;
     std::cin >> a;
@@ -27,8 +31,9 @@ int main() {
     x = 12 * a * a + 7 * a - 12;
     double y;
     y = 3 * x * x * x + 4 * x * x - 11 * x + 1;
-    std::cout << x << std::endl;//Вывести значение х
-    std::cout << y << std::endl;//Вывести значение y
+    std::cout << x << std::endl;
+    std::cout << y << std::endl;
+// Определение плотности по объему и массе :
     std::cout << "Введите объем и массу" << std::endl;
     double volume;
     std::cin >> volume;
@@ -36,7 +41,8 @@ int main() {
     std::cin >> weight;
     double dentisy;
     dentisy = weight / volume;
-    std::cout << dentisy << std::endl;//Вывести найденную плотность
+    std::cout << dentisy << std::endl;
+// Решение функции :
     std::cout << "Введите число а,b" << std::endl;
     double a1;
     std::cin >> a1;
@@ -44,7 +50,8 @@ int main() {
     std::cin >> b;
     double x0;
     x0 = -b / a1; 
-    std::cout << x0 << std::endl;//Вывести найденное решение
+    std::cout << x0 << std::endl;
+// Длина между двумя точками :
     double x1;
     std::cin >> x1;
     double y1;
@@ -54,7 +61,8 @@ int main() {
     double y2;
     std::cin >> y2;
     s = sqrt( ( x1-x2) * ( x1-x2 ) +( y1-y2 ) * ( y1-y2) );
-    std::cout << s << std::endl;//Вывести найденное значение расстояния
+    std::cout << s << std::endl;
+// Нахождение периметра равнобедренной трапеции :
     std::cout << "Введите размеры большего и меньшего оснований и высоты" << std::endl;
     double bigBase;
     std::cin >> bigBase;
@@ -65,6 +73,7 @@ int main() {
     double perimeter;
     perimeter = bigBase + littleBase + 2 * sqrt( height * height + ( bigBase - littleBase ) * ( bigBase - littleBase ) / 4 );
     std::cout << perimeter << std::endl;
+// Нахождение площади кольца :
     std::cout << "Введите внутренний и внешний радиус" << std::endl;
     double littleRadius;
     std::cin >> littleRadius;
@@ -72,8 +81,9 @@ int main() {
     std::cin >> bigRadius;
     double square;
     square = 3.14 * ( bigRadius*bigRadius - littleRadius * littleRadius );
-    std::cout << square << std::endl;//Площадь кольца
-    std::cout << "Введите длину ребра" << std::endl;//Площадь кольца
+    std::cout << square << std::endl;
+// Нахождение площади кольца :
+    std::cout << "Введите длину ребра" << std::endl;
     double rid;
     std::cin >> rib;
     double volumeCube;
@@ -82,11 +92,13 @@ int main() {
     surfaceArea = 6 * rib * rib;
     std::cout << volumeCube << std::endl;
     std::cout << surfaceArea << std::endl;
+// Нахождение объема квадрата :
     std::cout << "Введите сторону квадрата, чтобы узнать периметр" << std::endl;
     double side;
     std::cin >> side;
     double area;
     area = 4 * side;
+// Нахождение радиуса окружности :
     std::cout << "Введите радиус окружности, чтобы узнать диаметр" << std::endl;
     double radius;
     std::cin >> radius;
