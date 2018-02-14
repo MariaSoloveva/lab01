@@ -1,6 +1,7 @@
 #include <iostream>
 #include "string.h"
 
+
 int StrLen(const char* strIn)
 {
     int size = 0;
