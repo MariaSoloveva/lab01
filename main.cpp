@@ -1,5 +1,5 @@
 #include <iostream>
-#include "strings.h"
+#include "string.h"
 
 int StrLen(const char* strIn)
 {
