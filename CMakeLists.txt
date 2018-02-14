@@ -5,8 +5,7 @@ include_directories(SYSTEM
 ) 
 
 # enum your files 
-add_executable(executable 
-labNumberOne.cpp,
+add_executable(executable
 main.cpp,
 string.h
 ) 
