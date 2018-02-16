@@ -62,10 +62,10 @@ bool String::operator==(const String& rhs) const
 }
 size_t String::Find(const String& substr) const
 {
-    for(size_t i = 0; i < Size() - substr.Size(); ++i)
+    for (size_t i = 0; i < Size() - substr.Size(); ++i)
     {
         bool flag = true;
-        for(int j = 0; j < substr.Size(); ++j)
+        for (int j = 0; j < substr.Size(); ++j)
             if (substr.Data[j] != Data[i + j])
             {
                 flag = false;
