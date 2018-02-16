@@ -13,7 +13,7 @@ String::String()
 String::String(const String& rhs)
 {
     Data = new char[rhs.Size() + 1];
-    strcpy(Data, rhs.Data);
+    memcpy(Data, rhs.Data(), Size());
 }
 String::String(const char* data)
 {
