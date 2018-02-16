@@ -7,7 +7,9 @@ String::~String()
 {
     delete[] Data;
 }
-String::String() : Data(nullptr) {}
+String::String()
+    : Data(nullptr)
+{}
 String::String(const String& rhs)
 {
     Data = new char[rhs.Size() + 1];
@@ -48,17 +50,16 @@ String& String::operator+=(const String& rhs)
 bool String::operator<(const String& rhs) const
 {
     int i = 0;
-    while (Data[i] == rhs.Data[i])
+    while ((Data[i] == rhs.Data[i]) && (i < Data.Size()))
         ++i;
-    std::cout << i<< std::endl;
-    return (Data[i] < rhs.Data[i]) ? false : true;
+    return (Data[i] < rhs.Data[i]);
 }
 bool String::operator==(const String& rhs) const
 {
     int i = 0;
     for (; (rhs.Data[i] == Data[i]) && (i < rhs.Size()); ++i)
         continue;
-    return (i == rhs.Size()) ? true : false;
+    return (i == rhs.Size());
 }
 size_t String::Find(const String& substr) const
 {
@@ -66,6 +67,7 @@ size_t String::Find(const String& substr) const
     {
         bool flag = true;
         for (int j = 0; j < substr.Size(); ++j)
+        {
             if (substr.Data[j] != Data[i + j])
             {
                 flag = false;
@@ -73,6 +75,7 @@ size_t String::Find(const String& substr) const
             }
         if (flag)
             return i;
+        }
     }
     return -1;
 }
@@ -112,7 +115,7 @@ void String::RTrim(char symbol)
         newData[i] = Data[i];
     this->Data = nullptr;
     delete[] this->Data;
-    newData[sizeOfData ] = 0;
+    newData[sizeOfData] = 0;
     Data = newData;
 }
 void String::LTrim(char symbol)
@@ -142,7 +145,7 @@ bool operator!=(const String& a, const String& b)
 
 bool operator>(const String& a, const String& b)
 {
-    return ((b < a ) && (b != a)) ? true : false;
+    return ((b < a ) && (b != a));
 }
 std::ostream& operator<<(std::ostream& out, const String& str)
 {
