@@ -1,4 +1,3 @@
-
 #include <cstring>
 #include <iostream>
 #include "string.hpp"
@@ -21,14 +20,13 @@ String::String(const char* data)
     for (; data[size] != 0; size++)
         continue;
     Data = new char[size + 1];
-    strcpy(Data, data);
+    memcpy(Data, rhs.Data(), Size());
 }
 String& String::operator=(const String& rhs)
 {
     if (this != &rhs)
     {
-        Data = nullptr;
-        delete[] this->Data;
+        delete[] Data;
         Data = new char[rhs.Size()+1];
         strcpy(Data, rhs.Data);
     }
@@ -43,7 +41,7 @@ String& String::operator+=(const String& rhs)
         newString[i] = Data[i];
     for (int k = Size(), j = 0; k <= size; k++, j++)
         newString[k] = rhs.Data[j];
-    delete[] this->Data;
+    delete[] Data;
     Data = newString;
     return *this;
 }
@@ -52,14 +50,14 @@ bool String::operator<(const String& rhs) const
     int i = 0;
     while ((Data[i] == rhs.Data[i]) && (i < Data.Size()))
         ++i;
-    return (Data[i] < rhs.Data[i]);
+    return Data[i] < rhs.Data[i];
 }
 bool String::operator==(const String& rhs) const
 {
     int i = 0;
     for (; (rhs.Data[i] == Data[i]) && (i < rhs.Size()); ++i)
         continue;
-    return (i == rhs.Size());
+    return i == rhs.Size();
 }
 size_t String::Find(const String& substr) const
 {
@@ -94,7 +92,7 @@ size_t String::Size() const
 }
 bool String::Empty() const
 {
-    return (Data == nullptr) ? true : false;
+    return Data == nullptr;
 }
 char String::operator[](size_t index) const
 {
@@ -113,8 +111,7 @@ void String::RTrim(char symbol)
     char* newData = new char[sizeOfData + 1];
     for (int i = 0; i < sizeOfData; ++i)
         newData[i] = Data[i];
-    this->Data = nullptr;
-    delete[] this->Data;
+    delete[] Data;
     newData[sizeOfData] = 0;
     Data = newData;
 }
@@ -127,8 +124,7 @@ void String::LTrim(char symbol)
     char* newData = new char[Size() - sizeOfData + 1];
     for (int i = 0; Data[sizeOfData] != 0; ++sizeOfData, ++i)
         newData[i] = Data[sizeOfData];
-    Data = nullptr;
-    delete[] this->Data;
+    delete[] Data;
     Data = newData;
 }
 
