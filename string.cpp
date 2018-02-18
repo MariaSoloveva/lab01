@@ -105,7 +105,7 @@ char& String::operator[](size_t index)
 void String::RTrim(char symbol)
 {
     int sizeOfData = Size();
-    while((Data[sizeOfData - 1] == symbol) && (sizeOfData > 0))
+    while ((Data[sizeOfData - 1] == symbol) && (sizeOfData > 0))
             --sizeOfData;
     char* newData = new char[sizeOfData + 1];
     memcpy(newData, Data, sizeOfData);
@@ -116,7 +116,7 @@ void String::RTrim(char symbol)
 void String::LTrim(char symbol)
 {
     size_t sizeOfData = 0;
-    while((Data[sizeOfData] == symbol) && (sizeOfData >= 0))
+    while ((Data[sizeOfData] == symbol) && (sizeOfData >= 0))
         ++sizeOfData;
     char* newData = new char[Size() - sizeOfData];
     int newSize = Size() - sizeOfData;
