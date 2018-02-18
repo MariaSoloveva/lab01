@@ -7,12 +7,13 @@ String::~String()
     delete[] Data;
 }
 String::String()
-    : Data(nullptr)
-{}
+{
+    Data = new char('\0');
+}
 String::String(const String& rhs)
 {
     Data = new char[rhs.Size() + 1];
-    memcpy(Data, rhs.Data(), Size());
+    memcpy(Data, rhs.Data, rhs.Size() + 1);
 }
 String::String(const char* data)
 {
@@ -20,7 +21,7 @@ String::String(const char* data)
     for (; data[size] != 0; size++)
         continue;
     Data = new char[size + 1];
-    memcpy(Data, rhs.Data(), Size());
+    memcpy(Data, data, size + 1);
 }
 String& String::operator=(const String& rhs)
 {
@@ -28,7 +29,7 @@ String& String::operator=(const String& rhs)
     {
         delete[] Data;
         Data = new char[rhs.Size()+1];
-        strcpy(Data, rhs.Data);
+        memcpy(Data, rhs.Data, rhs.Size() + 1);
     }
     return *this;
 }
@@ -37,8 +38,7 @@ String& String::operator+=(const String& rhs)
 {
     int size = Size() + rhs.Size();
     char* newString = new char[size + 1];
-    for (int i = 0; i < Size(); i++)
-        newString[i] = Data[i];
+    memcpy(newString, Data, rhs.Size());
     for (int k = Size(), j = 0; k <= size; k++, j++)
         newString[k] = rhs.Data[j];
     delete[] Data;
@@ -48,7 +48,7 @@ String& String::operator+=(const String& rhs)
 bool String::operator<(const String& rhs) const
 {
     int i = 0;
-    while ((Data[i] == rhs.Data[i]) && (i < Data.Size()))
+    while ((Data[i] == rhs.Data[i]) && (i < Size()))
         ++i;
     return Data[i] < rhs.Data[i];
 }
@@ -71,8 +71,8 @@ size_t String::Find(const String& substr) const
                 flag = false;
                 break;
             }
-        if (flag)
-            return i;
+            if (flag)
+                return i;
         }
     }
     return -1;
@@ -92,7 +92,7 @@ size_t String::Size() const
 }
 bool String::Empty() const
 {
-    return Data == nullptr;
+    return Size() == 0;
 }
 char String::operator[](size_t index) const
 {
@@ -104,13 +104,11 @@ char& String::operator[](size_t index)
 }
 void String::RTrim(char symbol)
 {
-    size_t sizeOfData = Size();
-    for (; sizeOfData != -1; sizeOfData--)
-        if (Data[sizeOfData - 1] != symbol)
-            break;
+    int sizeOfData = Size();
+    while((Data[sizeOfData - 1] == symbol) && (sizeOfData > 0))
+            --sizeOfData;
     char* newData = new char[sizeOfData + 1];
-    for (int i = 0; i < sizeOfData; ++i)
-        newData[i] = Data[i];
+    memcpy(newData, Data, sizeOfData);
     delete[] Data;
     newData[sizeOfData] = 0;
     Data = newData;
@@ -118,12 +116,13 @@ void String::RTrim(char symbol)
 void String::LTrim(char symbol)
 {
     size_t sizeOfData = 0;
-    for (; Data[sizeOfData] != 0; ++sizeOfData)
-        if (Data[sizeOfData] != symbol)
-            break;
-    char* newData = new char[Size() - sizeOfData + 1];
+    while((Data[sizeOfData] == symbol) && (sizeOfData >= 0))
+        ++sizeOfData;
+    char* newData = new char[Size() - sizeOfData];
+    int newSize = Size() - sizeOfData;
     for (int i = 0; Data[sizeOfData] != 0; ++sizeOfData, ++i)
         newData[i] = Data[sizeOfData];
+    newData[newSize] = 0;
     delete[] Data;
     Data = newData;
 }
