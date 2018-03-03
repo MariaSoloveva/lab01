@@ -1,3 +1,4 @@
+#pragma once
 #include <algorithm>
 #include <cstring>
 #include <iostream>
@@ -64,7 +65,7 @@ public:
         }
         else
         {
-            Polynomial pol(a);
+            Polynomial <T>pol(a);
             for (size_t i = 1; i < Coefficients.size() + 1; ++i)
                 pol[a.Coefficients.size() - i] += Coefficients[Coefficients.size() - i];
             return pol;
@@ -106,7 +107,7 @@ public:
 
     Polynomial& operator /= (const Polynomial& a)
     {
-        Polynomial copy(*this);
+        Polynomial <T>copy(*this);
         int inner = copy.Degree() - a.Degree() + 1;
         std::vector<T> vec(inner);
         for(size_t i = 0; i < inner; ++i)
@@ -121,7 +122,7 @@ public:
                 pol.Coefficients.erase(pol.Coefficients.begin());
             copy.Coefficients.erase(copy.Coefficients.begin());
         }
-        Polynomial pol(vec);
+        Polynomial <T>pol(vec);
         return pol;
     }
     Polynomial& operator %= (const Polynomial& a)
@@ -150,7 +151,7 @@ public:
         return number;
     }
 
-    auto begin() const -> decltype(Coefficients.begin())
+    /*auto begin() const -> decltype(Coefficients.begin())
     {
         return Coefficients.begin();
     }
@@ -158,7 +159,7 @@ public:
     auto end() const -> decltype(Coefficients.end())
     {
         return Coefficients.end();
-    }
+    }*/
 
 private:
     std::vector<T> Coefficients;
@@ -167,14 +168,14 @@ private:
 template<class T>
 bool operator==(const Polynomial<T>& a, const Polynomial<T>& b)
 {
-    if (std::distance(a.begin(), a.end()) == std::distance(b.begin(), b.end()))
+    /*if (std::distance(a.begin(), a.end()) == std::distance(b.begin(), b.end()))
     {
         for (size_t i = a.begin(); i < std::distance(a.begin(), a.end()); ++i)
             if (*(a.begin() + i) != *(b.begin() + i))
                 return false;
         return true;
     }
-    return false;
+    return false;*/
 }
 
 template<class T>
