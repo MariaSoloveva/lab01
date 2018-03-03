@@ -117,12 +117,12 @@ class Polynomial
         for (size_t i = 0; i < inner; ++i)
         {
             Polynomial pol(a);
-            for(size_t j = 0; j < copy.Degree() - a.Degree(); ++j)
+            for (size_t j = 0; j < copy.Degree() - a.Degree(); ++j)
                 pol.Coefficients.push_back(0);
             pol *= (copy.Coefficients[0] / a.Coefficients[0]);
             vec[i] = copy.Coefficients[0] / a.Coefficients[0];
             copy -= pol;
-            for(size_t j = 0; j < copy.Degree() - a.Degree(); ++j)
+            for (size_t j = 0; j < copy.Degree() - a.Degree(); ++j)
                 pol.Coefficients.erase(pol.Coefficients.begin());
             copy.Coefficients.erase(copy.Coefficients.begin());
         }
