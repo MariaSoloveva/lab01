@@ -11,7 +11,6 @@ ADD_DEFINITIONS(
 # enum your files
 add_executable(executable
     main.cpp
-    //string.cpp
 )
 
 target_link_libraries(executable)
