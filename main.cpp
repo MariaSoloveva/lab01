@@ -2,7 +2,7 @@
 #include <cstring>
 #include <iostream>
 #include <vector>
-#include "strind.hpp"
+#include "string.hpp"
 
 int main()
 {
