@@ -242,24 +242,3 @@ Polynomial<T> operator*(T b, const Polynomial<T>& a)
     c *= b;
     return c;
 }
-
-int main()
-{
-    std::vector<double> vec ={1, 2, 1};
-    std::vector<double> vec1 ={5, 2, 6, 0, 1};
-    Polynomial <double>polyOfVec(vec);
-    Polynomial <double>poly;
-    Polynomial <double>polyOfVec1(vec1);
-    polyOfVec1 /= polyOfVec;
-    polyOfVec1 %= polyOfVec;
-    polyOfVec1 *= polyOfVec;
-    poly = polyOfVec1 % polyOfVec;
-    poly = polyOfVec * 4.;
-    poly = 7. * poly;
-    polyOfVec += polyOfVec1;
-    polyOfVec1 = polyOfVec + polyOfVec;
-    polyOfVec1 *= polyOfVec;
-    std::cout << (polyOfVec1 == polyOfVec) << std::endl;
-    std::cout << (polyOfVec1 != polyOfVec) << std::endl;
-    return 0;
-}
