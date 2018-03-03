@@ -1,148 +1,260 @@
+#include <algorithm>
 #include <cstring>
 #include <iostream>
-#include "string.hpp"
+#include <vector>
 
-String::~String()
+
+template <class T>
+class Polynomial
 {
-    delete[] Data;
-}
-String::String()
-{
-    Data = new char('\0');
-}
-String::String(const String& rhs)
-{
-    Data = new char[rhs.Size() + 1];
-    memcpy(Data, rhs.Data, rhs.Size() + 1);
-}
-String::String(const char* data)
-{
-    int size = 0;
-    for (; data[size] != 0; size++)
-        continue;
-    Data = new char[size + 1];
-    memcpy(Data, data, size + 1);
-}
-String& String::operator=(const String& rhs)
-{
-    if (this != &rhs)
+public:
+    Polynomial()
     {
-        delete[] Data;
-        Data = new char[rhs.Size()+1];
-        memcpy(Data, rhs.Data, rhs.Size() + 1);
+        Coefficients.push_back(0);
     }
-    return *this;
-}
-
-String& String::operator+=(const String& rhs)
-{
-    int size = Size() + rhs.Size();
-    char* newString = new char[size + 1];
-    memcpy(newString, Data, rhs.Size());
-    for (int k = Size(), j = 0; k <= size; k++, j++)
-        newString[k] = rhs.Data[j];
-    delete[] Data;
-    Data = newString;
-    return *this;
-}
-bool String::operator<(const String& rhs) const
-{
-    int i = 0;
-    while ((Data[i] == rhs.Data[i]) && (i < Size()))
-        ++i;
-    return Data[i] < rhs.Data[i];
-}
-bool String::operator==(const String& rhs) const
-{
-    int i = 0;
-    for (; (rhs.Data[i] == Data[i]) && (i < rhs.Size()); ++i)
-        continue;
-    return i == rhs.Size();
-}
-size_t String::Find(const String& substr) const
-{
-    for (size_t i = 0; i < Size() - substr.Size(); ++i)
+    ~Polynomial()
     {
-        bool flag = true;
-        for (int j = 0; j < substr.Size(); ++j)
+        Coefficients.clear();
+    }
+    Polynomial(size_t a)
+    {
+        for(size_t i = 0; i < a; ++i)
+            Coefficients.push_back(0);
+    }
+    Polynomial(const Polynomial& a)
+    {
+        for(size_t i = 0; i < a.Coefficients.size(); ++i)
+            Coefficients.push_back(a.Coefficients[i]);
+    }
+    Polynomial(const std::vector<T>& coef)
+    {
+        for (size_t i = 0; i < coef.size(); ++i)
+            Coefficients.push_back(coef[i]);
+    }
+
+    T& operator[](size_t index)
+    {
+        return Coefficients[index];
+    }
+    T operator[](size_t index) const
+    {
+        return Coefficients[index];
+    }
+
+    size_t Degree() const
+    {
+        return Coefficients.size() - 1;
+    }
+    Polynomial& operator = (const Polynomial& a)
+    {
+        Coefficients.clear();
+        for(size_t i = 0; i < a.Degree() + 1; ++i)
         {
-            if (substr.Data[j] != Data[i + j])
-            {
-                flag = false;
-                break;
-            }
-            if (flag)
-                return i;
+            Coefficients.push_back(a[i]);
+        }
+        return *this;
+    }
+    Polynomial& operator += (const Polynomial& a)
+    {
+        if(Coefficients.size() > a.Coefficients.size())
+        {
+            for (size_t i = 1; i < a.Coefficients.size() + 1; ++i)
+                Coefficients[Coefficients.size() - i] += a[a.Coefficients.size() - i];
+            return *this;
+        }
+        else
+        {
+            Polynomial pol(a);
+            for (size_t i = 1; i < Coefficients.size() + 1; ++i)
+                pol[a.Coefficients.size() - i] += Coefficients[Coefficients.size() - i];
+            return pol;
         }
     }
-    return -1;
-}
-void String::Replace(char oldSymbol, char newSymbol)
+    Polynomial& operator -= (const Polynomial& a)
+    {
+        Polynomial pol(a);
+        if(Coefficients.size() >= a.Coefficients.size())
+        {
+            for (size_t i = 1; i < a.Coefficients.size() + 1; ++i)
+                Coefficients[Coefficients.size() - i] -= a[a.Coefficients.size() - i];
+            return *this;
+        }
+        else
+        {
+            for (size_t i = 1; i < Coefficients.size() + 1; ++i)
+                pol[a.Coefficients.size() - i] -= Coefficients[Coefficients.size() - i];
+            return pol;
+        }
+    }
+    Polynomial& operator *= (const Polynomial& a)
+    {
+        std::vector<T> newVec(1);
+        for(size_t i = 0; i < this->Degree() + a.Degree(); ++i)
+            newVec.push_back(0);
+        for(size_t i = 0; i < a.Coefficients.size(); ++i)
+            for(size_t j = 0; j < Coefficients.size(); ++j)
+                newVec[i + j] += a.Coefficients[i] * Coefficients[j];
+        Polynomial pol(newVec);
+        return pol;
+    }
+    Polynomial& operator *= (T c)
+    {
+        for(size_t i = 0; i < Coefficients.size(); ++i)
+            Coefficients[i] *= c;
+        return *this;
+    }
+
+    Polynomial& operator /= (const Polynomial& a)
+    {
+        Polynomial copy(*this);
+        int inner = copy.Degree() - a.Degree() + 1;
+        std::vector<T> vec(inner);
+        for(size_t i = 0; i < inner; ++i)
+        {
+            Polynomial pol(a);
+            for(size_t j = 0; j < copy.Degree() - a.Degree(); ++j)
+                pol.Coefficients.push_back(0);
+            pol *= (copy.Coefficients[0] / a.Coefficients[0]);
+            vec[i] = copy.Coefficients[0] / a.Coefficients[0];
+            copy -= pol;
+            for(size_t j = 0; j < copy.Degree() - a.Degree(); ++j)
+                pol.Coefficients.erase(pol.Coefficients.begin());
+            copy.Coefficients.erase(copy.Coefficients.begin());
+        }
+        Polynomial pol(vec);
+        return pol;
+    }
+    Polynomial& operator %= (const Polynomial& a)
+    {
+        Polynomial copy(*this);
+        int inner = copy.Degree() - a.Degree() + 1;
+        for(size_t i = 0; i < inner; ++i)
+        {
+            Polynomial pol(a);
+            for(size_t j = 0; j < copy.Degree() - a.Degree(); ++j)
+                pol.Coefficients.push_back(0);
+            pol *= (copy.Coefficients[0] / a.Coefficients[0]);
+            copy -= pol;
+            for(size_t j = 0; j < copy.Degree() - a.Degree(); ++j)
+                pol.Coefficients.erase(pol.Coefficients.begin());
+            copy.Coefficients.erase(copy.Coefficients.begin());
+        }
+        return copy;
+    }
+
+    T operator()(const T& a) const
+    {
+        T number = 0;
+        for(size_t i = 0 ; i < this->Degree(); ++i)
+            number += Coefficients[i] * pow(a, this->Degree());
+        return number;
+    }
+
+    auto begin() const -> decltype(Coefficients.begin())
+    {
+        return Coefficients.begin();
+    }
+
+    auto end() const -> decltype(Coefficients.end())
+    {
+        return Coefficients.end();
+    }
+
+private:
+    std::vector<T> Coefficients;
+};
+
+template<class T>
+bool operator==(const Polynomial<T>& a, const Polynomial<T>& b)
 {
-    for (int i = 0; Data[i] != 0; ++i)
-        if (Data[i] == oldSymbol)
-            Data[i] = newSymbol;
-}
-size_t String::Size() const
-{
-    size_t sizeOfData = 0;
-    for (; Data[sizeOfData] != 0; ++sizeOfData)
-        continue;
-    return sizeOfData;
-}
-bool String::Empty() const
-{
-    return Size() == 0;
-}
-char String::operator[](size_t index) const
-{
-    return Data[index];
-}
-char& String::operator[](size_t index)
-{
-    return Data[index];
-}
-void String::RTrim(char symbol)
-{
-    int sizeOfData = Size();
-    while ((Data[sizeOfData - 1] == symbol) && (sizeOfData > 0))
-            --sizeOfData;
-    char* newData = new char[sizeOfData + 1];
-    memcpy(newData, Data, sizeOfData);
-    delete[] Data;
-    newData[sizeOfData] = 0;
-    Data = newData;
-}
-void String::LTrim(char symbol)
-{
-    size_t sizeOfData = 0;
-    while ((Data[sizeOfData] == symbol) && (sizeOfData >= 0))
-        ++sizeOfData;
-    char* newData = new char[Size() - sizeOfData];
-    int newSize = Size() - sizeOfData;
-    for (int i = 0; Data[sizeOfData] != 0; ++sizeOfData, ++i)
-        newData[i] = Data[sizeOfData];
-    newData[newSize] = 0;
-    delete[] Data;
-    Data = newData;
+    if (std::distance(a.begin(), a.end()) == std::distance(b.begin(), b.end()))
+    {
+        for (size_t i = a.begin(); i < std::distance(a.begin(), a.end()); ++i)
+            if (*(a.begin() + i) != *(b.begin() + i))
+                return false;
+        return true;
+    }
+    return false;
 }
 
-String operator+(const String& a, const String& b)
-{
-    String c = a;
-    return c += b;
-}
-
-bool operator!=(const String& a, const String& b)
+template<class T>
+bool operator!=(const Polynomial<T>& a, const Polynomial<T>& b)
 {
     return !(a == b);
 }
 
-bool operator>(const String& a, const String& b)
+template<class T>
+Polynomial<T> operator+(const Polynomial<T>& a, const Polynomial<T>& b)
 {
-    return ((b < a ) && (b != a));
+    Polynomial <T>c(a);
+    c += b;
+    return c;
 }
-std::ostream& operator<<(std::ostream& out, const String& str)
+
+template<class T>
+Polynomial<T> operator-(const Polynomial<T>& a, const Polynomial<T>& b)
 {
-    return out << str.Data;
+    Polynomial <T>c(a);
+    c -= b;
+    return c;
+}
+
+template<class T>
+Polynomial<T> operator*(const Polynomial<T>& a, const Polynomial<T>& b)
+{
+    Polynomial <T>c(a);
+    c *= b;
+    return c;
+}
+
+template<class T>
+Polynomial<T> operator/(const Polynomial<T>& a, const Polynomial<T>& b)
+{
+    Polynomial <T>c(a);
+    c /= b;
+    return c;
+}
+
+template<class T>
+Polynomial<T> operator%(const Polynomial<T>& a, const Polynomial<T>& b)
+{
+    Polynomial <T>c(a);
+    c %= b;
+    return c;
+}
+
+template<class T>
+Polynomial<T> operator*(const Polynomial<T>& a, T b)
+{
+    Polynomial <T>c(a);
+    c *= b;
+    return c;
+}
+template<class T>
+Polynomial<T> operator*(T b, const Polynomial<T>& a)
+{
+    Polynomial <T>c(a);
+    c *= b;
+    return c;
+}
+
+int main()
+{
+    std::vector<double> vec ={1,2,1};
+    std::vector<double> vec1 ={5,2,6,0,1};
+    Polynomial <double>polyOfVec(vec);
+    Polynomial <double>poly;
+    Polynomial <double>polyOfVec1(vec1);
+    polyOfVec1 /= polyOfVec;
+    polyOfVec1 %= polyOfVec;
+    polyOfVec1 *= polyOfVec;
+    poly = polyOfVec1 % polyOfVec;
+    poly = polyOfVec * 4.;
+    poly = 7. * poly;
+    polyOfVec += polyOfVec1;
+    polyOfVec1 = polyOfVec + polyOfVec;
+    polyOfVec1 *= polyOfVec;
+    std::cout << (polyOfVec1 == polyOfVec) << std::endl;
+    std::cout << (polyOfVec1 != polyOfVec) << std::endl;
+    return 0;
 }
