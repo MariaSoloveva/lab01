@@ -59,10 +59,10 @@ void shiftDown(It first, int head, int bottom, Compare cmp = Compare{})
 }
 
 template <class It, class Compare = std::less<int>>
-void heap_sort(It first, It last, Compare cmp = Compare{})
+void heap_sort(It first, It last, Compare cmp=Compare{})
 {
     for (int i = (std::distance(first, last) / 2) - 1; i >= 0; --i)
-        shiftDown(first, i, std::distance(first, last));
+        shiftDown(first, i, std::distance(first, last), cmp);
     for (int i = std::distance(first, last) - 1; i >= 1; --i)
     {
         std::iter_swap(first, first + i);
@@ -70,7 +70,7 @@ void heap_sort(It first, It last, Compare cmp = Compare{})
     }
 }
 template <class It, class Compare = std::less<int>>
-void quick_sort(It first, It last, Compare cmp = Compare{})
+void quick_sort(It first, It last, Compare cmp=Compare{})
 {
     if (std::distance(first, last) <= 1)
         return;
@@ -79,12 +79,12 @@ void quick_sort(It first, It last, Compare cmp = Compare{})
     quick_sort(first, middle, cmp);
     quick_sort(middle, last, cmp);
 }
-template <class It, class Compare = std::less<int>>
-void insertion_sort(It first, It last, Compare cmp = Compare{})
+template <class It, class Compare=std::less<int>>
+void insertion_sort(It first, It last, Compare cmp=Compare{})
 {
     if (!(first < last))
         return;
     for (It i = first + 1; i != last; ++i)
-        for (It j = i; j != first && *j < *(j - 1); --j)
+        for (It j = i; j != first && (cmp(*j, *(j - 1)) == *j); --j)
             std::iter_swap(j - 1, j);
 }
