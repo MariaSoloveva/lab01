@@ -138,8 +138,6 @@ public:
                 pol.Coefficients.erase(pol.Coefficients.begin());
             Coefficients.erase(Coefficients.begin());
         }
-        for (int i = 0; i < Coefficients.size(); ++i)
-            std::cout << Coefficients[i] << " ";
         return *this;
     }
 
