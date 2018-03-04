@@ -3,8 +3,8 @@
 #include <iterator>
 #include <functional>
 
-template <class It, class Out, class Compare=std::less<int>>
-Out merge(It first1, It last1, It first2, It last2, Out out, Compare cmp=Compare{})
+template <class It, class Out, class Compare = std::less<int>>
+Out merge(It first1, It last1, It first2, It last2, Out out, Compare cmp = Compare{})
 {
     while (first1 != last1)
     {
@@ -14,7 +14,8 @@ Out merge(It first1, It last1, It first2, It last2, Out out, Compare cmp=Compare
         {
             *out = *first2;
             ++first2;
-        } else
+        }
+        else
         {
             *out = *first1;
             ++first1;
@@ -23,7 +24,7 @@ Out merge(It first1, It last1, It first2, It last2, Out out, Compare cmp=Compare
     }
     return std::copy(first2, last2, out);
 }
-template <class It, class Compare=std::less<int>>
+template <class It, class Compare = std::less<int>>
 void merge_sort(It first, It last, Compare cmp = Compare{})
 {
     if (std::distance(first, last) <= 1)
@@ -34,8 +35,8 @@ void merge_sort(It first, It last, Compare cmp = Compare{})
     std::inplace_merge(first, middle, last, cmp);
 }
 
-template <class It, class Compare=std::less<int>>
-void shiftDown(It first, int head, int bottom, Compare cmp=Compare{})
+template <class It, class Compare = std::less<int>>
+void shiftDown(It first, int head, int bottom, Compare cmp = Compare{})
 {
     int inner = 0;
     int flag = 1;
@@ -57,8 +58,8 @@ void shiftDown(It first, int head, int bottom, Compare cmp=Compare{})
     }
 }
 
-template <class It, class Compare=std::less<int>>
-void heap_sort(It first, It last, Compare cmp=Compare{})
+template <class It, class Compare = std::less<int>>
+void heap_sort(It first, It last, Compare cmp = Compare{})
 {
     for (int i = (std::distance(first, last) / 2) - 1; i >= 0; --i)
         shiftDown(first, i, std::distance(first, last));
@@ -68,8 +69,8 @@ void heap_sort(It first, It last, Compare cmp=Compare{})
         shiftDown(first, 0, i - 1);
     }
 }
-template <class It, class Compare=std::less<int>>
-void quick_sort(It first, It last, Compare cmp=Compare{})
+template <class It, class Compare = std::less<int>>
+void quick_sort(It first, It last, Compare cmp = Compare{})
 {
     if (std::distance(first, last) <= 1)
         return;
@@ -78,8 +79,8 @@ void quick_sort(It first, It last, Compare cmp=Compare{})
     quick_sort(first, middle, cmp);
     quick_sort(middle, last, cmp);
 }
-template <class It, class Compare=std::less<int>>
-void insertion_sort(It first, It last, Compare cmp=Compare{})
+template <class It, class Compare = std::less<int>>
+void insertion_sort(It first, It last, Compare cmp = Compare{})
 {
     if (!(first < last))
         return;
