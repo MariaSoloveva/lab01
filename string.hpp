@@ -3,7 +3,6 @@
 #include <cstring>
 #include <iostream>
 #include <vector>
-#include "string.hpp"
 
 template <class T>
 class Polynomial
