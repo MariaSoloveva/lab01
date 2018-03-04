@@ -2,7 +2,7 @@
 #include <cstring>
 #include <iostream>
 #include <vector>
-#include "string.hpp"
+#include "Polynomial.hpp"
 
 int main()
 {
