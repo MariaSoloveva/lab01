@@ -9,7 +9,7 @@ Out wise_addition(It first1, It last1, It first2, Out out, BinatyOp plus)
     It it2 = first2;
     for (It it1 = first1; it1 != last1; ++it1)
     {
-        *out = *it1 + *it2;
+        *out = plus(*it1, *it2);
         ++it2;
         ++out;
     }
