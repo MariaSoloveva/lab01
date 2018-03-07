@@ -54,8 +54,8 @@ public:
         , endOfVec(new T[n])
         , N(n)
     {
-        //memset(startOfVec, beg, n * sizeof(startOfVec[0]));
-        //memset(endOfVec, end, n * sizeof(endOfVec[0]));
+        //  memset(startOfVec, beg, n * sizeof(startOfVec[0]));
+        //  memset(endOfVec, end, n * sizeof(endOfVec[0]));
     }
 
     // конструктор копирования
@@ -161,37 +161,38 @@ int main()
     std::vector<int> v3(3);
 
     auto it = wise_addition(v1.begin(), v1.end(), v2.begin(), v3.begin(), std::plus<int>{});
-    std::cout << std::boolalpha << (it == (v3.begin() + std::distance(v1.begin(), v1.end()))); // true
-    std::cout << v3[0] << v3[1] << v3[2]; // 000
+    std::cout << std::boolalpha << (it == (v3.begin() + std::distance(v1.begin(),
+                                                                      v1.end())));  // true
+    std::cout << v3[0] << v3[1] << v3[2];  // 000
 
     MaxAbs<int> op;
     int v = op(-100, 10);
-    std::cout << v; // -100
+    std::cout << v;  // -100
 
     int arr1[] = {1, 2, 3, 2};
     int arr2[] = {1, 4, 6, 4};
     int arr0[] = {0, 0, 0, 0};
     // DimVector(size_t n)
     DimVector<int> b(4);
-    //DimVector(T* beg, T* end, size_t n)
+    // DimVector(T* beg, T* end, size_t n)
     DimVector<int> c1(arr1, arr2, 4);
     DimVector<int> c2(arr0, arr2, 4);
-    //DimVector(const DimVector& point);
+    // DimVector(const DimVector& point);
     DimVector<int> cCopy(c1);
-    //DimVector& operator=(const DimVector& oth)
+    // DimVector& operator=(const DimVector& oth)
     std:: cout << (b = c2) << std::endl;
-    //DimVector& operator+=(const DimVector& oth)
+    // DimVector& operator+=(const DimVector& oth)
     std:: cout << (b += c2) << std::endl;
-    //size_t Dimension() const
+    // size_t Dimension() const
     std:: cout << b.Dimension() << std::endl;
-    //T Length() const
+    // T Length() const
     std:: cout << cCopy.Length() << std::endl;
-    //bool operator== (const DimVector&) const
+    // bool operator== (const DimVector&) const
     std:: cout << (b == c2) << std::endl;
     std:: cout << (b == b) << std::endl;
-    //DimVector<T> operator+(const DimVector<T>& a, const DimVector<T>& b)
+    // DimVector<T> operator+(const DimVector<T>& a, const DimVector<T>& b)
     std:: cout << (c1 + c1) << std::endl;
-    //bool operator!= (const DimVector<T>&, const DimVector<T>&) const
+    // bool operator!= (const DimVector<T>&, const DimVector<T>&) const
     std:: cout << (b != c2) << std::endl;
     std:: cout << (b != b) << std::endl;
     return 0;
