@@ -7,12 +7,12 @@
 template <class T>
 class Matrix
 {
-public:
+ public:
     class Row
     {
         T* Rows;
         size_t M;
-    public:
+     public:
         Row()
         {
             M = 0;
@@ -22,7 +22,7 @@ public:
         {
             Rows = new T[a];
             M = a;
-            for(size_t i = 0; i < a; ++i)
+            for (size_t i = 0; i < a; ++i)
             {
                 Rows[i] = 0;
             }
@@ -48,7 +48,7 @@ public:
             delete[] Rows;
             Rows = new T[a.M];
             M = a.M;
-            for(size_t i = 0; i < M; ++i)
+            for (size_t i = 0; i < M; ++i)
                 Rows[i] = a.Rows[i];
             return *this;
         }
@@ -57,7 +57,7 @@ public:
     {
         N = n;
         MatrixNM = new Row[N];
-        for(size_t i = 0; i < N; ++i)
+        for (size_t i = 0; i < N; ++i)
             MatrixNM[i] = Row(m);
     }
     ~Matrix()
@@ -74,10 +74,10 @@ public:
         N = n;
         MatrixNM = new Row[N];
         int x = 0;
-        for(size_t i = 0; i < N; ++i)
+        for (size_t i = 0; i < N; ++i)
         {
             MatrixNM[i] = Row(m);
-            for(size_t j = 0; j < m; ++j)
+            for (size_t j = 0; j < m; ++j)
             {
                 MatrixNM[i][j] = vecIn[j + x];
             }
@@ -88,7 +88,7 @@ public:
     {
         MatrixNM = new Row[m.NumRows()];
         N = m.NumRows();
-        for(size_t i = 0; i < m.NumRows(); ++i)
+        for (size_t i = 0; i < m.NumRows(); ++i)
         {
             MatrixNM[i] = Row(m.NumCols());
             MatrixNM[i] = m.MatrixNM[i];
@@ -99,7 +99,7 @@ public:
         delete[] this->MatrixNM;
         N = m.N;
         MatrixNM = new Row[N];
-        for(size_t i = 0; i < N; ++i)
+        for (size_t i = 0; i < N; ++i)
             MatrixNM[i] = m.MatrixNM[i];
         return *this;
     }
@@ -210,7 +210,7 @@ public:
     {
         T det = 0;
         int k = 1;
-        if(NumRows() < 1 || NumCols() != NumRows())
+        if (NumRows() < 1 || NumCols() != NumRows())
         {
             throw std::runtime_error("Can't name determinant");
         }
@@ -277,7 +277,7 @@ public:
         }
         return characteristicEq;
     }*/
-private:
+ private:
     Row* MatrixNM;
     size_t N;
 };
@@ -413,9 +413,9 @@ int main()
     m4[2][0] = 0;
     m4[2][1] = -4;
     m4[2][2] = 10;
-    Polynomial<int> vec = m4.CharacteristicEquation();
+    /*  Polynomial<int> vec = m4.CharacteristicEquation();
     for (size_t i = 0; i < vec.Degree() + 1; ++i)
-        std::cout << vec[i] << " ";
+        std::cout << vec[i] << " ";  */
     Matrix<int> m3(v2, 3, 2);
     m3[0][0] = 4;
     m3[0][1] = 4;
@@ -423,7 +423,7 @@ int main()
     m3[1][1] = 4;
     m3[2][0] = 3;
     m3[2][1] = 4;
-    //Matrix<int> m13(v1, 5, 2);
+    //  Matrix<int> m13(v1, 5, 2);
     m = getBasis(m3);
     std::cout << std::endl;
     for (size_t i = 0; i < m.NumRows(); ++i) {
