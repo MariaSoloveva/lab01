@@ -14,10 +14,8 @@ class Matrix
         size_t M;
      public:
         Row()
-        {
-            M = 0;
-            Rows = nullptr;
-        }
+            : M = 0;
+            , Rows = nullptr;
         Row(size_t a)
         {
             Rows = new T[a];
