@@ -320,7 +320,7 @@ template<class T>
 Matrix<T> getBasis(const Matrix<T>& vectors)
 {
     if (vectors.NumCols() > vectors.NumRows())
-        std::runtime_error("can't find basis");
+        return std::runtime_error("can't find basis");
     Matrix<T> copy(vectors.NumCols(), vectors.NumCols());
     for (size_t k = 0; k < vectors.NumRows() - vectors.NumCols() + 1; ++k)
     {
@@ -332,7 +332,7 @@ Matrix<T> getBasis(const Matrix<T>& vectors)
         if (copy.Determinant() == 0)
             return copy;
     }
-    std::runtime_error("can't find basis");
+    return std::runtime_error("can't find basis");
 }
 template<class T>
 std::vector<T> getCoordinates(const Matrix<T>& basis, const std::vector<T>& vector)
