@@ -14,8 +14,9 @@ class Matrix
         size_t M;
      public:
         Row()
-            : M = 0;
-            , Rows = nullptr;
+            : M(0)
+            , Rows(nullptr)
+        {}
         Row(size_t a)
         {
             Rows = new T[a];
@@ -318,7 +319,7 @@ template<class T>
 Matrix<T> getBasis(const Matrix<T>& vectors)
 {
     if (vectors.NumCols() > vectors.NumRows())
-        return std::runtime_error("can't find basis");
+        std::runtime_error("can't find basis");
     Matrix<T> copy(vectors.NumCols(), vectors.NumCols());
     for (size_t k = 0; k < vectors.NumRows() - vectors.NumCols() + 1; ++k)
     {
@@ -330,7 +331,8 @@ Matrix<T> getBasis(const Matrix<T>& vectors)
         if (copy.Determinant() == 0)
             return copy;
     }
-    return std::runtime_error("can't find basis");
+    std::runtime_error("can't find basis");
+    return copy;
 }
 template<class T>
 std::vector<T> getCoordinates(const Matrix<T>& basis, const std::vector<T>& vector)
