@@ -258,7 +258,7 @@ class Matrix
     {
         return MatrixNM[index];
     }
-    Polynomial<T> CharacteristicEquation()
+    /*Polynomial<T> CharacteristicEquation()
     {
         Matrix<T> Copy(*this);
         Polynomial<T> characteristicEq(NumRows() + 1);
@@ -274,7 +274,7 @@ class Matrix
             Copy = *this;
         }
         return characteristicEq;
-    }
+    }*/
  private:
     Row* MatrixNM;
     size_t N;
