@@ -1,4 +1,9 @@
-
+#include <algorithm>
+#include <cstring>
+#include <iostream>
+#include <iterator>
+#include <functional>
+#include"sort.hpp"
 
 int main()
 {
