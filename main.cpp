@@ -14,17 +14,16 @@ class Matrix
         size_t M;
      public:
         Row()
-            : M(0)
-            , Rows(nullptr)
-        {}
+        {
+            M = 0;
+            Rows = nullptr;
+        }
         Row(size_t a)
         {
             Rows = new T[a];
             M = a;
             for (size_t i = 0; i < a; ++i)
-            {
                 Rows[i] = 0;
-            }
         }
         ~Row()
         {
