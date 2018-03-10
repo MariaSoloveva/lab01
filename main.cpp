@@ -3,17 +3,16 @@
 #include <iostream>
 #include <iterator>
 #include <functional>
-#include "cmake-build-debug/polynomial.h"
 
 template <class T>
 class Matrix
 {
-public:
+ public:
     class Row
     {
         T* Rows;
         size_t M;
-    public:
+     public:
         Row()
         {
             M = 0;
@@ -278,7 +277,7 @@ public:
         }
         return characteristicEq;
     }
-private:
+ private:
     Row* MatrixNM;
     size_t N;
 };
@@ -424,7 +423,7 @@ int main()
     m3[1][1] = 4;
     m3[2][0] = 3;
     m3[2][1] = 4;
-    //Matrix<int> m13(v1, 5, 2);
+    //  Matrix<int> m13(v1, 5, 2);
     m = getBasis(m3);
     std::cout << std::endl;
     for (size_t i = 0; i < m.NumRows(); ++i) {
