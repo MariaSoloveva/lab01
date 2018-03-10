@@ -3,7 +3,6 @@
 #include <iostream>
 #include <iterator>
 #include <functional>
-#include "cmake-build-debug/polynomial.h"
 
 template <class T>
 class Matrix
@@ -261,7 +260,7 @@ public:
     {
         return MatrixNM[index];
     }
-    Polynomial<T> CharacteristicEquation()
+    /*Polynomial<T> CharacteristicEquation()
     {
         Matrix<T> Copy(*this);
         Polynomial<T> characteristicEq(NumRows() + 1);
@@ -277,7 +276,7 @@ public:
             Copy = *this;
         }
         return characteristicEq;
-    }
+    }*/
 private:
     Row* MatrixNM;
     size_t N;
